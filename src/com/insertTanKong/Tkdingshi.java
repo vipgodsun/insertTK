@@ -23,8 +23,8 @@ public class Tkdingshi {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	   //³ÌĞò¿ªÊ¼ÔËĞĞ
-       System.out.println("³ÌĞò¿ªÊ¼ÔËĞĞ");
+	   //ç¨‹åºå¼€å§‹è¿è¡Œ
+       System.out.println("ç¨‹åºå¼€å§‹è¿è¡Œ");
 	   BlockingQueue<ArrayList<String>> queue = new LinkedBlockingQueue<ArrayList<String>>(100000);
 	   Producer producer1 = new Producer(queue);
 	   Producer producer2 = new Producer(queue);
@@ -37,23 +37,23 @@ public class Tkdingshi {
 	}
 	
 	/**
-	 * Ò»¸ö·Ç³£±ê×¼µÄÁ¬½ÓOracleÊı¾İ¿âµÄÊ¾Àı´úÂë
+	 * ä¸€ä¸ªéå¸¸æ ‡å‡†çš„è¿æ¥Oracleæ•°æ®åº“çš„ç¤ºä¾‹ä»£ç 
 	 */
 	public  static void insertOracle(ArrayList<String> dataList)
 	{
-	    Connection con = null;// ´´½¨Ò»¸öÊı¾İ¿âÁ¬½Ó
-	    PreparedStatement pre = null;// ´´½¨Ô¤±àÒëÓï¾ä¶ÔÏó£¬Ò»°ã¶¼ÊÇÓÃÕâ¸ö¶ø²»ÓÃStatement
-	    ResultSet result = null;// ´´½¨Ò»¸ö½á¹û¼¯¶ÔÏó
+	    Connection con = null;// åˆ›å»ºä¸€ä¸ªæ•°æ®åº“è¿æ¥
+	    PreparedStatement pre = null;// åˆ›å»ºé¢„ç¼–è¯‘è¯­å¥å¯¹è±¡ï¼Œä¸€èˆ¬éƒ½æ˜¯ç”¨è¿™ä¸ªè€Œä¸ç”¨Statement
+	    ResultSet result = null;// åˆ›å»ºä¸€ä¸ªç»“æœé›†å¯¹è±¡
 	    try
 	    {
-	        Class.forName("oracle.jdbc.driver.OracleDriver");// ¼ÓÔØOracleÇı¶¯³ÌĞò
-	        System.out.println("¿ªÊ¼³¢ÊÔÁ¬½ÓÊı¾İ¿â£¡");
-	        String url = "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST =172.19.38.9)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = mydb)))";// 127.0.0.1ÊÇ±¾»úµØÖ·£¬XEÊÇ¾«¼ò°æOracleµÄÄ¬ÈÏÊı¾İ¿âÃû
-	        String user = "miss";// ÓÃ»§Ãû,ÏµÍ³Ä¬ÈÏµÄÕË»§Ãû
-	        String password = "miss1";// Äã°²×°Ê±Ñ¡ÉèÖÃµÄÃÜÂë
-	        con = DriverManager.getConnection(url, user, password);// »ñÈ¡Á¬½Ó
-	        System.out.println("Á¬½Ó³É¹¦£¡");
-	         //±£´æµ±Ç°×Ô¶¯Ìá½»Ä£Ê½
+	        Class.forName("oracle.jdbc.driver.OracleDriver");// åŠ è½½Oracleé©±åŠ¨ç¨‹åº
+	        System.out.println("å¼€å§‹å°è¯•è¿æ¥æ•°æ®åº“ï¼");
+	        String url = "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST =)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = mydb)))";// 127.0.0.1æ˜¯æœ¬æœºåœ°å€ï¼ŒXEæ˜¯ç²¾ç®€ç‰ˆOracleçš„é»˜è®¤æ•°æ®åº“å
+	        String user = "";// ç”¨æˆ·å,ç³»ç»Ÿé»˜è®¤çš„è´¦æˆ·å
+	        String password = "";// ä½ å®‰è£…æ—¶é€‰è®¾ç½®çš„å¯†ç 
+	        con = DriverManager.getConnection(url, user, password);// è·å–è¿æ¥
+	        System.out.println("è¿æ¥æˆåŠŸï¼");
+	         //ä¿å­˜å½“å‰è‡ªåŠ¨æäº¤æ¨¡å¼
 	        Statement stmt = con.createStatement(); 
 	        for(int i=0;i<dataList.size();i++){
 	        	stmt.addBatch(dataList.get(i));
@@ -69,15 +69,15 @@ public class Tkdingshi {
 	    {
 	        try
 	        {
-	            // ÖğÒ»½«ÉÏÃæµÄ¼¸¸ö¶ÔÏó¹Ø±Õ£¬ÒòÎª²»¹Ø±ÕµÄ»°»áÓ°ÏìĞÔÄÜ¡¢²¢ÇÒÕ¼ÓÃ×ÊÔ´
-	            // ×¢Òâ¹Ø±ÕµÄË³Ğò£¬×îºóÊ¹ÓÃµÄ×îÏÈ¹Ø±Õ
+	            // é€ä¸€å°†ä¸Šé¢çš„å‡ ä¸ªå¯¹è±¡å…³é—­ï¼Œå› ä¸ºä¸å…³é—­çš„è¯ä¼šå½±å“æ€§èƒ½ã€å¹¶ä¸”å ç”¨èµ„æº
+	            // æ³¨æ„å…³é—­çš„é¡ºåºï¼Œæœ€åä½¿ç”¨çš„æœ€å…ˆå…³é—­
 	            if (result != null)
 	                result.close();
 	            if (pre != null)
 	                pre.close();
 	            if (con != null)
 	                con.close();
-	            System.out.println("Êı¾İ¿âÁ¬½ÓÒÑ¹Ø±Õ£¡");
+	            System.out.println("æ•°æ®åº“è¿æ¥å·²å…³é—­ï¼");
 	        }
 	        catch (Exception e)
 	        {
@@ -89,28 +89,28 @@ public class Tkdingshi {
 	
 	public  static BlockingQueue<String> testCimiss(String time) {
 	     /*
-	       * main·½·¨
-	       * Èç£º°´Ê±¼ä¼ìË÷µØÃæÊı¾İÒªËØ getSurfEleByTime
+	       * mainæ–¹æ³•
+	       * å¦‚ï¼šæŒ‰æ—¶é—´æ£€ç´¢åœ°é¢æ•°æ®è¦ç´  getSurfEleByTime
 	       */
-	        /* 1. µ÷ÓÃ·½·¨µÄ²ÎÊı¶¨Òå£¬²¢¸³Öµ */
+	        /* 1. è°ƒç”¨æ–¹æ³•çš„å‚æ•°å®šä¹‰ï¼Œå¹¶èµ‹å€¼ */
 		
-	        String params ="userId=BCSY_LNDL_qxxx" /* 1.1 ÓÃ»§Ãû&ÃÜÂë */
-	            + "&pwd=dalian82637349"
-	            + "&interfaceId=getUparEleByTimeAndStaID" /* 1.2 ½Ó¿ÚID */        
-	            + "&dataCode=UPAR_CHN_MUL_FTM" /* 1.3 ±ØÑ¡²ÎÊı£¨°´Ğè¼Ó¿ÉÑ¡²ÎÊı£© */ //×ÊÁÏ£ºÖĞ¹úµØÃæÖğĞ¡Ê±
-	           // + "&elements=Station_Name,Province,City,Cnty,Town,Datetime,REP_CORR_ID,Year_Data,Mon_Data,Day_Data,Hour_Data,Station_Id_C,Station_Id_d,Lat,Lon,Alti,V07030,PRS_Sensor_Alti,HEITH_BALLON,Nation_Code,Year,Mon,Day,Hour,Min,Second,Sensor_type,RSON_Type,SIR_Corr,SYSTAT,SST,CLO_COV_LM,CLO_Height_LoM,CLO_Fome_Low,CLO_FOME_MID,CLO_Fome_High,DATA_CATE,EVSS,Time_Dev_WQ,Lat_Dev,Lon_Dev,PRS_HWC,GPH,Heigh_Alti,TEM,DPT,DTD,WIN_D,WIN_S,WIN_SHE_B1Km,WIN_She_A1Km,Q_Lat_Dev,Q_Lon_Dev,Q_PRS_HWC,Q_GPH,Q_Heigh_Alti,Q_TEM,Q_DPT,Q_DTD,Q_WIN_D,Q_WIN_S,Q_WIN_SHE_B1Km,Q_WIN_She_A1Km" //¼ìË÷ÒªËØ£ºÕ¾ºÅ¡¢Õ¾Ãû¡¢Ğ¡Ê±½µË®¡¢ÆøÑ¹¡¢Ïà¶ÔÊª¶È¡¢ÄÜ¼û¶È¡¢2·ÖÖÓÆ½¾ù·çËÙ¡¢2·ÖÖÓ·çÏò
+	        String params ="userId=" /* 1.1 ç”¨æˆ·å&å¯†ç  */
+	            + "&pwd="
+	            + "&interfaceId=getUparEleByTimeAndStaID" /* 1.2 æ¥å£ID */        
+	            + "&dataCode=UPAR_CHN_MUL_FTM" /* 1.3 å¿…é€‰å‚æ•°ï¼ˆæŒ‰éœ€åŠ å¯é€‰å‚æ•°ï¼‰ */ //èµ„æ–™ï¼šä¸­å›½åœ°é¢é€å°æ—¶
+	           // + "&elements=Station_Name,Province,City,Cnty,Town,Datetime,REP_CORR_ID,Year_Data,Mon_Data,Day_Data,Hour_Data,Station_Id_C,Station_Id_d,Lat,Lon,Alti,V07030,PRS_Sensor_Alti,HEITH_BALLON,Nation_Code,Year,Mon,Day,Hour,Min,Second,Sensor_type,RSON_Type,SIR_Corr,SYSTAT,SST,CLO_COV_LM,CLO_Height_LoM,CLO_Fome_Low,CLO_FOME_MID,CLO_Fome_High,DATA_CATE,EVSS,Time_Dev_WQ,Lat_Dev,Lon_Dev,PRS_HWC,GPH,Heigh_Alti,TEM,DPT,DTD,WIN_D,WIN_S,WIN_SHE_B1Km,WIN_She_A1Km,Q_Lat_Dev,Q_Lon_Dev,Q_PRS_HWC,Q_GPH,Q_Heigh_Alti,Q_TEM,Q_DPT,Q_DTD,Q_WIN_D,Q_WIN_S,Q_WIN_SHE_B1Km,Q_WIN_She_A1Km" //æ£€ç´¢è¦ç´ ï¼šç«™å·ã€ç«™åã€å°æ—¶é™æ°´ã€æ°”å‹ã€ç›¸å¯¹æ¹¿åº¦ã€èƒ½è§åº¦ã€2åˆ†é’Ÿå¹³å‡é£é€Ÿã€2åˆ†é’Ÿé£å‘
 	            + "&elements=Station_Name,Province,City,Cnty,Town,Datetime,REP_CORR_ID,Year_Data,Mon_Data,Day_Data,Hour_Data,Station_Id_C,Station_Id_d,Lat,Lon,Alti,V07030,PRS_Sensor_Alti,HEITH_BALLON,Nation_Code,Year,Mon,Day,Hour,Min,Second,Sensor_type,RSON_Type,SIR_Corr,SYSTAT,SST,CLO_COV_LM,CLO_Height_LoM,CLO_Fome_Low,CLO_FOME_MID,CLO_Fome_High,DATA_CATE,EVSS,Time_Dev_WQ,Lat_Dev,Lon_Dev,PRS_HWC,GPH,Heigh_Alti,TEM,DPT,DTD,WIN_D,WIN_S,WIN_SHE_B1Km,WIN_She_A1Km"
-	            + "&times=" +time//¼ìË÷Ê±¼ä
-	            + "&staIds=54662" //¼ìË÷Ê±¼ä
-	            + "&orderby=Station_ID_C:ASC"; //ÅÅĞò£º°´ÕÕÕ¾ºÅ´ÓĞ¡µ½´ó
-	            //+ "&limitCnt=10"  //·µ»Ø×î¶à¼ÇÂ¼Êı£º10
-	            //+ "&dataFormat=json" ; /* 1.4 ĞòÁĞ»¯¸ñÊ½ */
+	            + "&times=" +time//æ£€ç´¢æ—¶é—´
+	            + "&staIds=54662" //æ£€ç´¢æ—¶é—´
+	            + "&orderby=Station_ID_C:ASC"; //æ’åºï¼šæŒ‰ç…§ç«™å·ä»å°åˆ°å¤§
+	            //+ "&limitCnt=10"  //è¿”å›æœ€å¤šè®°å½•æ•°ï¼š10
+	            //+ "&dataFormat=json" ; /* 1.4 åºåˆ—åŒ–æ ¼å¼ */
 	                   
-	        /* 2. µ÷ÓÃ½Ó¿Ú */
+	        /* 2. è°ƒç”¨æ¥å£ */
 	        WebsUtil websUtil = new WebsUtil() ;
 	       // String rstData = websUtil.getWsString( "callAPI_to_serializedStr", params ) ;
 	        String[][] rstData = websUtil.getWsArray( "callAPI_to_Array", params ) ;
-	        /* 3.  Êä³ö½á¹û */
+	        /* 3.  è¾“å‡ºç»“æœ */
 //	        FormatUtil formatUtil = new FormatUtil() ;
 //	        formatUtil.outputRstHtml( rstData ) ;
 	        //System.out.println(rstData);
