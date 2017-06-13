@@ -12,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
  
 /**
- * Ïû·ÑÕßÏß³Ì
+ * æ¶ˆè´¹è€…çº¿ç¨‹
  * 
  * @author syc
  */
@@ -23,30 +23,30 @@ public class Consumer implements Runnable {
     }
  
     public void run() {
-        System.out.println("Æô¶¯Ïû·ÑÕßÏß³Ì£¡");
+        System.out.println("å¯åŠ¨æ¶ˆè´¹è€…çº¿ç¨‹ï¼");
         Random r = new Random();
         boolean isRunning = true;
-        Connection con = null;// ´´½¨Ò»¸öÊı¾İ¿âÁ¬½Ó
+        Connection con = null;// åˆ›å»ºä¸€ä¸ªæ•°æ®åº“è¿æ¥
         PreparedStatement pre = null;
         ResultSet result = null;
         try {
             while (isRunning) {
-                System.out.println("Õı´Ó¶ÓÁĞ»ñÈ¡Êı¾İ...");
-                //Á¬½ÓÊı¾İ¿â
+                System.out.println("æ­£ä»é˜Ÿåˆ—è·å–æ•°æ®...");
+                //è¿æ¥æ•°æ®åº“
                 
                try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				 System.out.println("¿ªÊ¼³¢ÊÔÁ¬½ÓÊı¾İ¿â£¡");
-	     	     String url = "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST =172.19.38.9)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = mydb)))";// 127.0.0.1ÊÇ±¾»úµØÖ·£¬XEÊÇ¾«¼ò°æOracleµÄÄ¬ÈÏÊı¾İ¿âÃû
-	     	     String user = "miss";// ÓÃ»§Ãû,ÏµÍ³Ä¬ÈÏµÄÕË»§Ãû
-	     	     String password = "miss1";// Äã°²×°Ê±Ñ¡ÉèÖÃµÄÃÜÂë
-	     	     con = DriverManager.getConnection(url, user, password);// »ñÈ¡Á¬½Ó
-	     	     System.out.println("172.19.38.9Á¬½Ó³É¹¦£¡");
-	     	        //±£´æµ±Ç°×Ô¶¯Ìá½»Ä£Ê½
+				 System.out.println("å¼€å§‹å°è¯•è¿æ¥æ•°æ®åº“ï¼");
+	     	     String url = "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST =)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = mydb)))";// 127.0.0.1æ˜¯æœ¬æœºåœ°å€ï¼ŒXEæ˜¯ç²¾ç®€ç‰ˆOracleçš„é»˜è®¤æ•°æ®åº“å
+	     	     String user = "";// ç”¨æˆ·å,ç³»ç»Ÿé»˜è®¤çš„è´¦æˆ·å
+	     	     String password = "";// ä½ å®‰è£…æ—¶é€‰è®¾ç½®çš„å¯†ç 
+	     	     con = DriverManager.getConnection(url, user, password);// è·å–è¿æ¥
+	     	     System.out.println("è¿æ¥æˆåŠŸï¼");
+	     	        //ä¿å­˜å½“å‰è‡ªåŠ¨æäº¤æ¨¡å¼
 	     	      Statement stmt = con.createStatement(); 
 	     	     ArrayList<String> data = queue.poll(2, TimeUnit.SECONDS);
 	     	      if(null != data){
-	     	    	  System.out.println("ÕıÔÚÄÃµ½Êı¾İ");
+	     	    	  System.out.println("æ­£åœ¨æ‹¿åˆ°æ•°æ®");
 	     	    	  for(int i=0;i<data.size();i++){
 	     	    		  stmt.addBatch(data.get(i));
 	     	    	  }
@@ -61,22 +61,22 @@ public class Consumer implements Runnable {
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}// ¼ÓÔØOracleÇı¶¯³ÌĞò
+			}// åŠ è½½Oracleé©±åŠ¨ç¨‹åº
               catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
            // ArrayList<String> data = queue.poll(2, TimeUnit.SECONDS);
 //                if (null != data) {
-//                    System.out.println("ÄÃµ½Êı¾İ£º" + data);
-//                    System.out.println("ÕıÔÚÏû·ÑÊı¾İ£º" + data);
+//                    System.out.println("æ‹¿åˆ°æ•°æ®ï¼š" + data);
+//                    System.out.println("æ­£åœ¨æ¶ˆè´¹æ•°æ®ï¼š" + data);
 //                    for(int i=0;i<data.size();i++){
 //        	        	stmt.addBatch(data.get(i));
 //        	        }
 //        	        stmt.executeBatch(); 
 //                    Thread.sleep(r.nextInt(DEFAULT_RANGE_FOR_SLEEP));
 //                } else {
-//                    // ³¬¹ı2s»¹Ã»Êı¾İ£¬ÈÏÎªËùÓĞÉú²úÏß³Ì¶¼ÒÑ¾­ÍË³ö£¬×Ô¶¯ÍË³öÏû·ÑÏß³Ì¡£
+//                    // è¶…è¿‡2sè¿˜æ²¡æ•°æ®ï¼Œè®¤ä¸ºæ‰€æœ‰ç”Ÿäº§çº¿ç¨‹éƒ½å·²ç»é€€å‡ºï¼Œè‡ªåŠ¨é€€å‡ºæ¶ˆè´¹çº¿ç¨‹ã€‚
 //                    isRunning = false;
 //                }
             }
@@ -86,20 +86,20 @@ public class Consumer implements Runnable {
         } finally {
         	try
 	        {
-	            // ÖğÒ»½«ÉÏÃæµÄ¼¸¸ö¶ÔÏó¹Ø±Õ£¬ÒòÎª²»¹Ø±ÕµÄ»°»áÓ°ÏìĞÔÄÜ¡¢²¢ÇÒÕ¼ÓÃ×ÊÔ´
-	            // ×¢Òâ¹Ø±ÕµÄË³Ğò£¬×îºóÊ¹ÓÃµÄ×îÏÈ¹Ø±Õ
+	            // é€ä¸€å°†ä¸Šé¢çš„å‡ ä¸ªå¯¹è±¡å…³é—­ï¼Œå› ä¸ºä¸å…³é—­çš„è¯ä¼šå½±å“æ€§èƒ½ã€å¹¶ä¸”å ç”¨èµ„æº
+	            // æ³¨æ„å…³é—­çš„é¡ºåºï¼Œæœ€åä½¿ç”¨çš„æœ€å…ˆå…³é—­
 	            if (result != null)
 	                result.close();
 	            if (pre != null)
 	                pre.close();
 	            if (con != null)
 	                con.close();
-	            System.out.println("Êı¾İ¿âÁ¬½ÓÒÑ¹Ø±Õ£¡");
+	            System.out.println("æ•°æ®åº“è¿æ¥å·²å…³é—­ï¼");
 	        }
         	catch(Exception e){
         		e.printStackTrace();
         	}
-            System.out.println("ÍË³öÏû·ÑÕßÏß³Ì£¡");
+            System.out.println("é€€å‡ºæ¶ˆè´¹è€…çº¿ç¨‹ï¼");
         }
     }
  
