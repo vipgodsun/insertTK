@@ -25,82 +25,15 @@ public class Tkdingshi {
 	public static void main(String[] args) {
 	   //程序开始运行
        System.out.println("程序开始运行");
-       //获取时间
-       DateFormat dateFormat2 = new SimpleDateFormat("yyyyMMddHHmmss");
-	   Date dat = null;
-       Calendar cd = Calendar.getInstance();
-       Calendar nowtime = Calendar.getInstance();
-       //开始时间,注意月份0代表1月
-       cd.set(2017,5,7,0,0,0);
-       //截止时间
-       nowtime.set(2017,5,9,0,0,0);
-       //连接数据库
-//       Connection con = null;// 创建一个数据库连接
-//	   PreparedStatement pre = null;// 创建预编译语句对象，一般都是用这个而不用Statement
-//	   ResultSet result = null;// 创建一个结果集对象
+	   BlockingQueue<ArrayList<String>> queue = new LinkedBlockingQueue<ArrayList<String>>(100000);
+	   Producer producer1 = new Producer(queue);
+	   Producer producer2 = new Producer(queue);
+	   Consumer consumer = new Consumer(queue);
+	   ExecutorService service = Executors.newCachedThreadPool();
+	   service.execute(producer1);
+	   service.execute(producer2);
+	   service.execute(consumer);
 
-//	       Class.forName("oracle.jdbc.driver.OracleDriver");// 加载Oracle驱动程序
-//	       System.out.println("开始尝试连接数据库！");
-//	       String url = "jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST =172.19.38.9)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = mydb)))";// 127.0.0.1是本机地址，XE是精简版Oracle的默认数据库名
-//	       String user = "miss";// 用户名,系统默认的账户名
-//	       String password = "miss1";// 你安装时选设置的密码
-//	       con = DriverManager.getConnection(url, user, password);// 获取连接
-//	       System.out.println("172.19.38.9连接成功！");
-//	        //保存当前自动提交模式
-//	       Statement stmt = con.createStatement(); 
-	       //ArrayList<String> dataList = new ArrayList<String>();
-	       //声明一个容量为100的缓存队列
-	       BlockingQueue<ArrayList<String>> queue = new LinkedBlockingQueue<ArrayList<String>>(100);
-	       Producer producer1 = new Producer(queue);
-	       Consumer consumer = new Consumer(queue);
-	       ExecutorService service = Executors.newCachedThreadPool();
-	       service.execute(producer1);
-	       service.execute(consumer);
-	       
-//	       while(cd.before(nowtime)){
-//	    	   cd.add(Calendar.HOUR, 24);
-//	    	   String str = (dateFormat2.format(cd.getTime()));  
-//	    	    System.out.println(str); 
-//	    	    try{
-//	    	    	dataList.addAll(testCimiss(str));
-//	    	    }
-//	    	    finally{
-//	    	    	continue;
-//	    	    }
-//	       }
-//	        //ArrayList<String> dataList = testCimiss();
-//	        
-//	        for(int i=0;i<dataList.size();i++){
-//	        	stmt.addBatch(dataList.get(i));
-//	        }
-//	        stmt.executeBatch(); 
-//	     
-//	    }
-//	    catch (Exception e)
-//	    {
-//	        e.printStackTrace();
-//	    }
-//	    finally
-//	    {
-//	        try
-//	        {
-//	            // 逐一将上面的几个对象关闭，因为不关闭的话会影响性能、并且占用资源
-//	            // 注意关闭的顺序，最后使用的最先关闭
-//	            if (result != null)
-//	                result.close();
-//	            if (pre != null)
-//	                pre.close();
-//	            if (con != null)
-//	                con.close();
-//	            System.out.println("数据库连接已关闭！");
-//	        }
-//	        catch (Exception e)
-//	        {
-//	            e.printStackTrace();
-//	        }
-//	    }
-     
-	
 	}
 	
 	/**

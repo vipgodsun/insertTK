@@ -43,9 +43,9 @@ public class Producer implements Runnable {
         Calendar cd = Calendar.getInstance();
         Calendar nowtime = Calendar.getInstance();
         //开始时间,注意月份0代表1月
-        cd.set(2017,5,7,0,0,0);
+        cd.set(2016,5,11,0,0,0);
         //截止时间
-        nowtime.set(2017,5,9,0,0,0);
+        nowtime.set(2017,5,12,0,0,0);
         System.out.println("启动生产者线程！");
         try {
             while (isRunning) {
@@ -57,7 +57,9 @@ public class Producer implements Runnable {
       	    	    	System.out.println("正在生产数据...");
       	    	    	System.out.println("从省局cimiss调取"+datatime+"数据"); 
       	    	    	Thread.sleep(10);
-      	    	    	queue.offer(getDataFromCimiss(datatime));
+      	    	    	if(!queue.offer(getDataFromCimiss(datatime))){
+      	    	    		System.out.println("日期为:"+datatime+"放入失败");
+      	    	    	}
       	    	    }
       	    	    finally{
       	    	    	continue;

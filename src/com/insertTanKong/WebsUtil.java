@@ -84,7 +84,7 @@ public class WebsUtil {
 	            return null;  
 	        }  
 	       
-	       String recordSql = "insert into UPAR_CHN_MUL_FTM values('"+recArray.get(0)+"','"+recArray.get(1)+"','"+recArray.get(2)+"','"+recArray.get(3)+"','"+recArray.get(4)+"',to_date('"+recArray.get(5)+"','YYYY-MM-DD HH24:MI:SS')";
+	       String recordSql = "insert into UPAR_CHN_MUL_FTM_1 values('"+recArray.get(0)+"','"+recArray.get(1)+"','"+recArray.get(2)+"','"+recArray.get(3)+"','"+recArray.get(4)+"',to_date('"+recArray.get(5)+"','YYYY-MM-DD HH24:MI:SS')";
 	       for(int i=6;i<recArray.size();i++)
 	       {
 	    	   recordSql += ",'"+recArray.get(i)+"'";

@@ -51,7 +51,7 @@ public class Consumer implements Runnable {
 	     	    		  stmt.addBatch(data.get(i));
 	     	    	  }
 	     	    	  stmt.executeBatch();
-	     	    	 Thread.sleep(r.nextInt(DEFAULT_RANGE_FOR_SLEEP));
+	     	    	 //Thread.sleep(r.nextInt(DEFAULT_RANGE_FOR_SLEEP));
 	     	      }
 	     	      else{
 	     	    	  isRunning = false;
